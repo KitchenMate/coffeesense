@@ -126,7 +126,8 @@
       }
     }
   },
-  "devDependencies": {
+  "dependencies": {
+    "generate-license-file": "^1.1.0",
     "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
@@ -154,9 +155,6 @@
     "vscode-languageclient": "^7.0.0",
     "vscode-languageserver-types": "^3.16.0",
     "vscode-test": "^1.5.2"
-  },
-  "dependencies": {
-    "generate-license-file": "^1.1.0"
   },
   "workspaces": {
     "nohoist": ["coffeescript"]
