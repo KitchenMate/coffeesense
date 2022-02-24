@@ -103,7 +103,7 @@
         },
         "coffeesense.dev.lspPath": {
           "type": "string",
-          "description": "Path to lsp for CoffeeSense developers. There are two ways of using it. \n\n1. Clone phil294/coffeesense from GitHub, build it and point it to the ABSOLUTE path of `/server`.\n2. `yarn global add coffeesense-language-server` and point CoffeeSense to the installed location (`yarn global dir` + node_modules/coffeesense-language-server)",
+          "description": "Path to lsp for CoffeeSense developers. There are two ways of using it. \n\n1. Clone phil294/coffeesense from GitHub, build it and point it to the ABSOLUTE path of `/server`.\n2. `yarn global add coffeesense-language-server` and point CoffeeSense to the installed location (`yarn global dir` + node_modules/coffeesense-language-server)"
         },
         "coffeesense.dev.lspPort": {
           "type": "number",
