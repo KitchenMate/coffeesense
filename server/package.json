@@ -51,6 +51,7 @@
   "scripts": {
     "compile": "rollup -c rollup.config.js",
     "watch": "rollup -c rollup.config.js -w",
-    "preversion": "yarn compile"
+    "preversion": "yarn compile",
+    "postinstall": "yarn compile"
   }
 }
