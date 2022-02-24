@@ -1,9 +1,9 @@
 import type ts from 'typescript';
 import { CompletionItemKind, SymbolKind } from 'vscode-languageserver';
-import { FILE_EXTENSION } from '../../language';
+import { FILE_EXTENSION, FILE_EXTENSION2 } from '../../language';
 
 export function isCoffeescriptFile(path: string) {
-  return path.endsWith(`.${FILE_EXTENSION}`);
+  return path.endsWith(`.${FILE_EXTENSION}`) || path.endsWith(`.${FILE_EXTENSION2}`);
 }
 
 /**
@@ -17,7 +17,7 @@ export function isCoffeescriptFile(path: string) {
  */
 export function isVirtualCoffeescriptFile(path: string, projectFiles: Set<string>) {
   return (
-    path.endsWith(`.${FILE_EXTENSION}.ts`) &&
+    (path.endsWith(`.${FILE_EXTENSION}.ts`) || path.endsWith(`.${FILE_EXTENSION2}.ts`)) &&
     (!path.includes('node_modules') || projectFiles.has(path.slice(0, -'.ts'.length)))
   );
 }

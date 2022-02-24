@@ -49,7 +49,7 @@ import { createEnvironmentService } from './EnvironmentService';
 import { accessSync, constants, existsSync } from 'fs';
 import { sleep } from '../utils/sleep';
 import { URI } from 'vscode-uri';
-import { FILE_EXTENSION } from '../language';
+import { FILE_EXTENSION, FILE_EXTENSION2 } from '../language';
 import transpile_service from './transpileService';
 
 interface ProjectConfig {

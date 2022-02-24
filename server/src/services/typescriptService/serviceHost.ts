@@ -13,7 +13,7 @@ import { ModuleResolutionCache } from './moduleResolutionCache';
 import { RuntimeLibrary } from '../dependencyService';
 import { EnvironmentService } from '../EnvironmentService';
 import { dirname } from 'path';
-import { FILE_EXTENSION, LANGUAGE_ID } from '../../language';
+import { FILE_EXTENSION, FILE_EXTENSION2, LANGUAGE_ID } from '../../language';
 
 const NEWLINE = process.platform === 'win32' ? '\r\n' : '\n';
 
@@ -116,6 +116,8 @@ export function getServiceHost(
     // When file is not in language service, add it
     if (!localScriptRegionDocuments.has(fileFsPath)) {
       if (fileFsPath.endsWith(`.${FILE_EXTENSION}`)) {
+        scriptFileNameSet.add(filePath);
+      } else if (fileFsPath.endsWith(`.${FILE_EXTENSION2}`)) {
         scriptFileNameSet.add(filePath);
       }
     }
@@ -223,7 +225,7 @@ export function getServiceHost(
         include?: ReadonlyArray<string>,
         depth?: number
       ): string[] {
-        const allExtensions = extensions ? extensions.concat([`.${FILE_EXTENSION}`]) : extensions;
+        const allExtensions = extensions ? extensions.concat([`.${FILE_EXTENSION}`, `.${FILE_EXTENSION2}`]) : extensions;
         return coffeescriptSys.readDirectory(path, allExtensions, exclude, include, depth);
       },
 
@@ -261,7 +263,7 @@ export function getServiceHost(
             return undefined;
           }
 
-          if (tsResolvedModule.resolvedFileName.endsWith(`.${FILE_EXTENSION}.ts`)) {
+          if (tsResolvedModule.resolvedFileName.endsWith(`.${FILE_EXTENSION}.ts`) || tsResolvedModule.resolvedFileName.endsWith(`.${FILE_EXTENSION2}.ts`)) {
             const resolvedFileName = tsResolvedModule.resolvedFileName.slice(0, -'.ts'.length);
             const uri = URI.file(resolvedFileName);
             const resolvedFileFsPath = normalizeFileNameToFsPath(resolvedFileName);
@@ -381,7 +383,7 @@ function getParsedConfig(
 ) {
   const currentProjectPath = tsconfigPath ? dirname(tsconfigPath) : projectRoot;
   const configJson = (tsconfigPath && tsModule.readConfigFile(tsconfigPath, tsModule.sys.readFile).config) || {
-    include: [`**/*.${FILE_EXTENSION}`],
+    include: [`**/*.${FILE_EXTENSION}`, `**/*.${FILE_EXTENSION2}`],
     exclude: defaultIgnorePatterns(tsModule, currentProjectPath)
   };
   // existingOptions should be empty since it always takes priority
@@ -397,6 +399,14 @@ function getParsedConfig(
         extension: FILE_EXTENSION,
         isMixedContent: true,
         // Note: in order for parsed config to include *.FILE_EXTENSION files, scriptKind must be set to Deferred.
+        // tslint:disable-next-line max-line-length
+        // See: https://github.com/microsoft/TypeScript/blob/2106b07f22d6d8f2affe34b9869767fa5bc7a4d9/src/compiler/utilities.ts#L6356
+        scriptKind: tsModule.ScriptKind.Deferred
+      },
+      {
+        extension: FILE_EXTENSION2,
+        isMixedContent: true,
+        // Note: in order for parsed config to include *.FILE_EXTENSION2 files, scriptKind must be set to Deferred.
         // tslint:disable-next-line max-line-length
         // See: https://github.com/microsoft/TypeScript/blob/2106b07f22d6d8f2affe34b9869767fa5bc7a4d9/src/compiler/utilities.ts#L6356
         scriptKind: tsModule.ScriptKind.Deferred

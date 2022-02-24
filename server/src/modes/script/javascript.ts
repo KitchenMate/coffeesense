@@ -41,7 +41,7 @@ import { toCompletionItemKind, toSymbolKind } from '../../services/typescriptSer
 import * as Previewer from './previewer';
 import { isVCancellationRequested, VCancellationToken } from '../../utils/cancellationToken';
 import { EnvironmentService } from '../../services/EnvironmentService';
-import { FILE_EXTENSION, LANGUAGE_ID } from '../../language';
+import { FILE_EXTENSION, FILE_EXTENSION2, LANGUAGE_ID } from '../../language';
 import transpile_service, { common_js_variable_name_character, get_word_around_position } from '../../services/transpileService';
 import { LineMap } from 'coffeescript';
 
@@ -376,6 +376,11 @@ export async function getJavascriptMode(
             if (entry.name.endsWith(`.${FILE_EXTENSION}`)) {
               return {
                 label: entry.name.slice(0, -`.${FILE_EXTENSION}`.length),
+                detail: entry.name
+              };
+            } else if (entry.name.endsWith(`.${FILE_EXTENSION2}`)) {
+              return {
+                label: entry.name.slice(0, -`.${FILE_EXTENSION2}`.length),
                 detail: entry.name
               };
             }
