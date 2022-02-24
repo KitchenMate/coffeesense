@@ -78,8 +78,7 @@
         "coffeesense.ignoreProjectWarning": {
           "type": "boolean",
           "default": false,
-          "description": "CoffeeSense will warn about not setup correctly for the project. You can disable it.",
-          "scope": "application"
+          "description": "CoffeeSense will warn about not setup correctly for the project. You can disable it."
         },
         "coffeesense.useWorkspaceDependencies": {
           "type": "boolean",
@@ -97,10 +96,14 @@
           "default": "off",
           "description": "Traces the communication between VS Code and CoffeeSense Language Server."
         },
+        "coffeesense.dev.resolveLspPathLocally": {
+          "type": "boolean",
+          "description": "If true, the lspPath will resolve relative to node_modules/coffeesense",
+          "default": false
+        },
         "coffeesense.dev.lspPath": {
           "type": "string",
           "description": "Path to lsp for CoffeeSense developers. There are two ways of using it. \n\n1. Clone phil294/coffeesense from GitHub, build it and point it to the ABSOLUTE path of `/server`.\n2. `yarn global add coffeesense-language-server` and point CoffeeSense to the installed location (`yarn global dir` + node_modules/coffeesense-language-server)",
-          "scope": "machine"
         },
         "coffeesense.dev.lspPort": {
           "type": "number",

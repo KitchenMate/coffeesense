@@ -18,7 +18,10 @@ export function initializeLanguageClient(lspModulePath: string): LanguageClient 
 
   let serverPath;
 
-  const devLspPackagePath = config.get('coffeesense.dev.lspPath', '');
+  let devLspPackagePath = config.get('coffeesense.dev.lspPath', '');
+  if (config.get('coffeesense.dev.resolveLspPathLocally', false)) {
+    devLspPackagePath = resolve('..', devLspPackagePath);
+  }
   if (devLspPackagePath && devLspPackagePath !== '' && existsSync(devLspPackagePath)) {
     serverPath = resolve(devLspPackagePath, 'dist/coffeescriptServerMain.js');
   } else {

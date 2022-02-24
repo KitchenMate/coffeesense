@@ -76,7 +76,8 @@ The following VSCode extension options are available. The default values are set
   // The port that the lsp listens to. Can be used for attaching to the LSP Node process for debugging / profiling.
   "coffeesense.dev.lspPort": null,
   // Log level for the lsp"
-  "coffeesense.dev.logLevel": "INFO" // Possible values: "INFO", "DEBUG"
+  "coffeesense.dev.logLevel": "INFO", // Possible values: "INFO", "DEBUG",
+  "coffeesense.dev.resovleLspPathLocally": false // When installing as node_module, resolve the Lsp server path from the install location
 }
 ```
 

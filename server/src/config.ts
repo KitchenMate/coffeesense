@@ -13,6 +13,7 @@ export interface LSPConfig {
       lspPath: string;
       lspPort: number;
       logLevel: 'INFO' | 'DEBUG';
+      resolveLspPathLocally: boolean;
     };
   };
 }
@@ -34,7 +35,8 @@ export function getDefaultLSPConfig(): LSPFullConfig {
       dev: {
         lspPath: '',
         lspPort: -1,
-        logLevel: 'INFO'
+        logLevel: 'INFO',
+        resolveLspPathLocally: false
       }
     },
     typescript: {
