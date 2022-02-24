@@ -20,7 +20,7 @@
     "coffee"
   ],
   "scripts": {
-    "postinstall": "npm run install:server && yarn compile",
+    "postinstall": "yarn compile && npm run install:server",
     "install:server": "cd server && yarn",
     "compile": "rollup -c rollup.config.js",
     "watch": "rollup -c rollup.config.js -w",
@@ -157,5 +157,8 @@
   },
   "dependencies": {
     "generate-license-file": "^1.1.0"
+  },
+  "workspaces": {
+    "nohoist": ["coffeescript"]
   }
 }

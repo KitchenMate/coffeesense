@@ -53,5 +53,8 @@
     "watch": "rollup -c rollup.config.js -w",
     "preversion": "yarn compile",
     "postinstall": "yarn compile"
+  },
+  "workspaces": {
+    "nohoist": ["coffeescript"]
   }
 }
