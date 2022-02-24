@@ -3,7 +3,7 @@ import { LanguageClient } from 'vscode-languageclient/node';
 
 export function generateDoctorCommand(client: LanguageClient) {
   return async () => {
-    if (!vscode.window.activeTextEditor || !vscode.window.activeTextEditor.document.fileName.endsWith('.coffee')) {
+    if (!vscode.window.activeTextEditor || !vscode.window.activeTextEditor.document.fileName.endsWith('.coffee', 6)) {
       return vscode.window.showInformationMessage('Failed to showGeneratedJavascript. Make sure the current file is a .coffee file.');
     }
 
